@@ -4,18 +4,47 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+    <title>Weather Search by Jacky</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/sunny.ico" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./assets/styles.css" />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
   </head>
   <body>
     <h1>Hello World!</h1>
+    <!-- Start of weather dashboard search area -->
+    <container>
+      <label for="search-form">Search for city.</label>
+      <form>
+        <input type="text" id="search-form" placeholder="Type city here" />
+      </form>
+      <button class="submit-button" type="submit">Submit</button><br />
+      <i class="fas fa-camera"></i>
+      <i class="fas fa-cloud"></i>
+      <i class="fas fa-cloud-rain"></i>
+    </container>
+    <!-- End of search form area -->
 
-    <script src="./assets/app.js" r></script>
+    <!-- Start of propagation container -->
+    <container id="display-here">
+      <column-med>content content content</column-med>
+    </container>
+    <!-- End of propagation container -->
+    <!-- Start of scripts -->
+    <script src="./assets/app.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <!-- End Scripts -->
   </body>
 </html>
