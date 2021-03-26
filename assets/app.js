@@ -1,5 +1,7 @@
 let weatherArray = [];
 
+// let cityInput = document.getElementById("search-form").value;
+
 let weatherCall =
   "api.openweathermap.org/data/2.5/weather?q=London&appid=" + "apiKey";
 
@@ -20,5 +22,5 @@ document
   .getElementById("submit-button")
   .addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("clicked");
+    console.log(document.getElementById("search-form").value);
   });
