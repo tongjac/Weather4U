@@ -1,0 +1,19 @@
+body {
+  background-color: lightblue;
+}
+
+form {
+  padding: 5px;
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  /* padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  background-color: lightblue; */
+}
