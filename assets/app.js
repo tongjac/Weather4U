@@ -92,7 +92,8 @@ function dailyWeather(data) {
   tempEl.textContent = "Temperature: " + data.list[0].main.temp + " °F";
   windEl.textContent = "Wind Speed: " + data.list[0].wind.speed + " MPH";
   let cardBodyEl = document.createElement("div");
-  cardBodyEl.classList.add("card-body");
+  cardBodyEl.setAttribute("class", "card-body");
+  cardBodyEl.setAttribute("id", "uv-index");
   let imgEl = document.createElement("img");
   imgEl.setAttribute(
     "src",
@@ -105,7 +106,7 @@ function dailyWeather(data) {
   cardBodyEl.appendChild(humidEl);
   cardBodyEl.appendChild(windEl);
   cardEl.appendChild(cardBodyEl);
-  // The one UV Index side
+  // The one UV Index side function for the button
   UVindex(data);
   summaryEl.appendChild(cardEl);
 
@@ -183,8 +184,25 @@ function UVindex(data) {
       return response.json();
     })
     .then((res) => {
-      console.log(res);
-      res.current.uvi;
+      let UVI = res.current.uvi;
+      let uvPart = document.getElementById("uv-index");
+      var uvEl = document.createElement("p");
+      uvEl.textContent = "UV Index: ";
+      var button = document.createElement("button");
+      button.innerHTML = UVI;
+
+      // Change the button to different colors depending on UV intensity.
+      if (UVI < 3) {
+        button.setAttribute("class", "btn btn-success");
+      } else if (UVI < 7) {
+        button.setAttribute("class", "btn btn-warning");
+      } else {
+        button.setAttribute("class", "btn btn-danger");
+      }
+
+      // Put UV index and button on.
+      uvPart.appendChild(uvEl);
+      uvEl.appendChild(button);
     })
     .catch((err) => {
       throw err;
