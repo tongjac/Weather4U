@@ -35,10 +35,14 @@ function forecastGet(city) {
         // But first let's clear out the previous summary  in case.
         let summaryEl = document.getElementById("forecast-summary");
         summaryEl.innerHTML = "";
+        let forecastEl = document.getElementById("forecast-full");
+        // forecastEl.innerHTML = "<p></p>";
+        while (forecastEl.length > 0) {
+          let last = forecastEl[forecastEl.length - 1];
+          last.parentNode.removeChild(last);
+        }
         // Prints summary elements
         dailyWeather(data);
-        // Prints 5 weather forecast cards.
-        postWeather(data);
         // Push to search history list.
         searchHistory(data.city.name);
       }
@@ -77,7 +81,7 @@ function dailyWeather(data) {
   let titleEl = document.createElement("h3");
   titleEl.classList.add("card-title");
   titleEl.textContent =
-    data.city.coord.name + " (" + new Date().toLocaleDateString() + ")";
+    data.city.name + " (" + new Date().toLocaleDateString() + ")";
   let cardEl = document.createElement("div");
   cardEl.classList.add("card");
   let windEl = document.createElement("p");
@@ -88,6 +92,7 @@ function dailyWeather(data) {
   tempEl.classList.add("card-text");
   humidEl.textContent = "Humidity: " + data.list[0].main.humidity + " %";
   tempEl.textContent = "Temperature: " + data.list[0].main.temp + " °F";
+  windEl.textContent = "Wind Speed: " + data.list[0].wind.speed + " MPH";
   let cardBodyEl = document.createElement("div");
   cardBodyEl.classList.add("card-body");
   let imgEl = document.createElement("img");
@@ -103,6 +108,9 @@ function dailyWeather(data) {
   cardBodyEl.appendChild(windEl);
   cardEl.appendChild(cardBodyEl);
   summaryEl.appendChild(cardEl);
+
+  // Prints 5 weather forecast cards.
+  postWeather(data);
 }
 
 function postWeather(weatherInput) {
@@ -115,8 +123,8 @@ function postWeather(weatherInput) {
     // only look at forecasts around 3:00pm
     if (weatherInput.list[i].dt_txt.indexOf("15:00:00") !== -1) {
       // create html elements for a bootstrap card
-      // var colEl = document.createElement("div");
-      // colEl.classList.add("col-md-2");
+      var colEl = document.createElement("div");
+      colEl.classList.add("col-md-2");
       let cardEl = document.createElement("div");
       cardEl.classList.add("card", "bg-primary", "text-white");
       let windEl = document.createElement("p");
@@ -150,7 +158,7 @@ function postWeather(weatherInput) {
         "Humidity: " + weatherInput.list[i].main.humidity + "%";
 
       // merge together and put on page
-      // colEl.appendChild(cardEl);
+      colEl.appendChild(cardEl);
       bodyEl.appendChild(titleEl);
       bodyEl.appendChild(imgEl);
       bodyEl.appendChild(windEl);
