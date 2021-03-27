@@ -41,12 +41,13 @@ function forecastGet(city) {
 }
 
 function searchHistory(textInput) {
+  // If List gets too long, remove the last item.
   let historyList = document.getElementsByClassName("list-group-item");
   if (historyList.length > 8) {
     var last = historyList[historyList.length - 1];
     last.parentNode.removeChild(last);
   }
-  // Create a list item
+  // Create a list item, add it to the top of list, and let them be clickable.
   let line = document.createElement("li");
   line.textContent = textInput;
   let setClass = document.createAttribute("class");

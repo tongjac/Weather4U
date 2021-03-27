@@ -2,6 +2,10 @@ body {
   background-color: lightblue;
 }
 
+h5 {
+  padding: 5px;
+}
+
 #search-form {
   padding: 5px;
 }
