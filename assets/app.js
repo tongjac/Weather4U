@@ -16,7 +16,7 @@ document
 
 function forecastGet(city) {
   fetch(
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
       "&appid=c1652b344dd0c23882d04fcb84c0b87a&units=imperial"
   )
@@ -146,7 +146,7 @@ function postWeather(weatherInput) {
       let imgEl = document.createElement("img");
       imgEl.setAttribute(
         "src",
-        "http://openweathermap.org/img/w/" +
+        "https://openweathermap.org/img/w/" +
           weatherInput.list[i].weather[0].icon +
           ".png"
       );
