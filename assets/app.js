@@ -105,6 +105,8 @@ function dailyWeather(data) {
   cardBodyEl.appendChild(humidEl);
   cardBodyEl.appendChild(windEl);
   cardEl.appendChild(cardBodyEl);
+  // The one UV Index side
+  UVindex(data);
   summaryEl.appendChild(cardEl);
 
   // Prints 5 weather forecast cards.
@@ -167,4 +169,24 @@ function postWeather(weatherInput) {
       forecastEl.appendChild(cardEl);
     }
   }
+}
+
+function UVindex(data) {
+  fetch(
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+      data.city.coord.lat +
+      "&lon=" +
+      data.city.coord.lon +
+      "&exclude=minute,hourly,daily,alerts&appid=c1652b344dd0c23882d04fcb84c0b87a"
+  )
+    .then((response) => {
+      return response.json();
+    })
+    .then((res) => {
+      console.log(res);
+      res.current.uvi;
+    })
+    .catch((err) => {
+      throw err;
+    });
 }
