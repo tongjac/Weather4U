@@ -1,7 +1,6 @@
 let weatherArray = [];
 let cityInput = "";
 let apiKey = "c1652b344dd0c23882d04fcb84c0b87a";
-let array = [];
 
 document
   .getElementById("submit-button")
@@ -19,14 +18,27 @@ document
 function trigger(url) {
   fetch(url)
     .then((response) => {
-      array = response.json();
-      console.log(array);
-      console.log(this.main.feels_like);
-      console.log(this.clouds);
-      console.log(this.timezone);
-      return;
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(data.main.feels_like);
     })
     .catch((err) => {
-      console.log(err);
+      throw err;
     });
+}
+
+function searchHistory(textInput) {
+  let line = document.createElement("li");
+  let text = textInput;
+  line.textContent = text;
+  let historyEl = document.getElementById("search-history");
+  historyEl.onclick = function (event) {
+    console.log(event.target.tagName);
+    if (event.target.tagName == "LI") {
+      searchWeather(event.target.textContent);
+    }
+  };
+  historyEl.appendChild(line);
 }

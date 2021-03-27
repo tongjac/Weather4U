@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Weather4U by Jacky</title>
+    <meta name="Weather Dashboard that you can search for cities!" content="" />
+
     <link rel="shortcut icon" type="image/x-icon" href="./images/sunny.ico" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./assets/styles.css" />
     <link
       rel="stylesheet"
@@ -18,59 +18,47 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
   </head>
+
   <body>
-    <h1>Hello World!</h1>
+    <header class="container-fluid text-center text-white bg-dark p-2">
+      <h1><strong>Weather Dashboard</strong></h1>
+    </header>
     <!-- Start of weather dashboard search form area -->
     <div class="container">
       <div class="row">
-        <div class="col-med">
-          <label for="search-form">Search for city.</label>
-          <form>
-            <input type="text" id="search-form" placeholder="Type city here" />
-          </form>
-          <button class="btn-primary" id="submit-button" type="submit">
-            Submit
-          </button>
-          <br />
-          <i class="fas fa-camera"></i> <i class="fas fa-cloud"></i>
-          <i class="fas fa-cloud-rain"></i>
+        <div class="col-med bg-light">
+          <h5 class="mt-1">Search for a City:</h5>
+          <div class="form-inline form-group">
+            <input
+              class="form-control"
+              type="text"
+              id="search-form"
+              placeholder="Type city here"
+            />
+            <button class="btn btn-primary" id="submit-button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+
+          <!-- Start of Search History -->
+          <div class="card" style="width: 16rem">
+            <ul class="list-group list-group-flush" id="search-history">
+              <li class="list-group-item">Cras justo odio</li>
+            </ul>
+          </div>
+          <!-- End of Search History -->
         </div>
       </div>
       <!-- End of search form area -->
 
       <!-- Start of propagation container -->
-      <div class="card">
-        <div class="card-header">Weather</div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">Weather</div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">Weather</div>
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-        </div>
+      <div class="col-lg-9">
+        <div id="today" class="mt-3"></div>
+        <div id="forecast" class="row mt-3"></div>
       </div>
       <!-- End of propagation container -->
     </div>
+
     <!-- Start of scripts -->
     <script src="./assets/app.js"></script>
     <!-- End Scripts -->
