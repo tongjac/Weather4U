@@ -21,3 +21,6 @@ A convenient dashboard to allow a user to view the current climate quickly and e
 ## Developers
 
 Jacky Tong
+
+## Screenshot of the Demo
+![Weather Dashboard by tongjac](/images/Weather_Dashboard_by_tongjac.png?raw=true "Weather Dashboard")
