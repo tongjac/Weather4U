@@ -27,11 +27,19 @@ function forecastGet(city) {
       console.log(data);
       if (data.message === "city not found") {
         // Push to main segment that city is not found.
-        alert("This isn't a valid location. Please search again.");
+        let summaryEl = document.getElementById("forecast-summary");
+        summaryEl.innerHTML = `<div class="card">
+        <div class="card-header">Invalid location. Please try again.</div>`;
       } else {
-        // do this if there is a valid response.
+        // Do these functions if there is a valid response.
+        // But first let's clear out the previous summary  in case.
+        let summaryEl = document.getElementById("forecast-summary");
+        summaryEl.innerHTML = "";
+        // Prints summary elements
+        dailyWeather(data);
+        // Prints 5 weather forecast cards.
         postWeather(data);
-        // push to search history list.
+        // Push to search history list.
         searchHistory(data.city.name);
       }
     })
@@ -64,47 +72,79 @@ function searchHistory(textInput) {
   historyEl.prepend(line);
 }
 
+function dailyWeather(data) {
+  let summaryEl = document.getElementById("forecast-summary");
+  let titleEl = document.createElement("h3");
+  titleEl.classList.add("card-title");
+  titleEl.textContent =
+    data.city.coord.name + " (" + new Date().toLocaleDateString() + ")";
+  let cardEl = document.createElement("div");
+  cardEl.classList.add("card");
+  let windEl = document.createElement("p");
+  windEl.classList.add("card-text");
+  let humidEl = document.createElement("p");
+  humidEl.classList.add("card-text");
+  let tempEl = document.createElement("p");
+  tempEl.classList.add("card-text");
+  humidEl.textContent = "Humidity: " + data.list[0].main.humidity + " %";
+  tempEl.textContent = "Temperature: " + data.list[0].main.temp + " °F";
+  let cardBodyEl = document.createElement("div");
+  cardBodyEl.classList.add("card-body");
+  let imgEl = document.createElement("img");
+  imgEl.setAttribute(
+    "src",
+    "http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png"
+  );
+
+  titleEl.appendChild(imgEl);
+  cardBodyEl.appendChild(titleEl);
+  cardBodyEl.appendChild(tempEl);
+  cardBodyEl.appendChild(humidEl);
+  cardBodyEl.appendChild(windEl);
+  cardEl.appendChild(cardBodyEl);
+  summaryEl.appendChild(cardEl);
+}
+
 function postWeather(weatherInput) {
-  var forecastEl = document.querySelector("#forecast");
-  forecastEl.innerHTML = '<h4 class="mt-3">5-Day Forecast:</h4>';
+  let forecastEl = document.getElementById("forecast-full");
   forecastRowEl = document.createElement("div");
   forecastRowEl.className = '"row"';
 
   // loop over all forecasts (by 3-hour increments)
-  for (var i = 0; i < weatherInput.list.length; i++) {
+  for (let i = 0; i < weatherInput.list.length; i++) {
     // only look at forecasts around 3:00pm
     if (weatherInput.list[i].dt_txt.indexOf("15:00:00") !== -1) {
       // create html elements for a bootstrap card
       // var colEl = document.createElement("div");
       // colEl.classList.add("col-md-2");
-      var cardEl = document.createElement("div");
+      let cardEl = document.createElement("div");
       cardEl.classList.add("card", "bg-primary", "text-white");
-      var windEl = document.createElement("p");
+      let windEl = document.createElement("p");
       windEl.classList.add("card-text");
       windEl.textContent =
         "Wind Speed: " + weatherInput.list[i].wind.speed + " MPH";
-      var humidityEl = document.createElement("p");
+      let humidityEl = document.createElement("p");
       humidityEl.classList.add("card-text");
       humidityEl.textContent =
         "Humidity : " + weatherInput.list[i].main.humidity + " %";
-      var bodyEl = document.createElement("div");
+      let bodyEl = document.createElement("div");
       bodyEl.classList.add("card-body", "p-2");
-      var titleEl = document.createElement("h5");
+      let titleEl = document.createElement("h5");
       titleEl.classList.add("card-title");
       titleEl.textContent = new Date(
         weatherInput.list[i].dt_txt
       ).toLocaleDateString();
-      var imgEl = document.createElement("img");
+      let imgEl = document.createElement("img");
       imgEl.setAttribute(
         "src",
         "http://openweathermap.org/img/w/" +
           weatherInput.list[i].weather[0].icon +
           ".png"
       );
-      var p1El = document.createElement("p");
+      let p1El = document.createElement("p");
       p1El.classList.add("card-text");
       p1El.textContent = "Temp: " + weatherInput.list[i].main.temp_max + " °F";
-      var p2El = document.createElement("p");
+      let p2El = document.createElement("p");
       p2El.classList.add("card-text");
       p2El.textContent =
         "Humidity: " + weatherInput.list[i].main.humidity + "%";

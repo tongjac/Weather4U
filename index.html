@@ -51,22 +51,9 @@
         <!-- End of search form area -->
 
         <!-- Start of propagation container -->
-        <div class="col-lg-9" id="today">
-          <div class="card">
-            <div class="card-header">Your Forecast Here:</div>
-            <div class="card-body">
-              <h3 class="card-title">
-                Los Angeles (3/27/2021)<img
-                  src="http://openweathermap.org/img/w/01d.png"
-                />
-              </h3>
-              <p class="card-text">Temperature: 72.64 °F</p>
-              <p class="card-text">Humidity: 27 %</p>
-              <p class="card-text"></p>
-              <p>UV Index: <span class="btn btn-sm btn-danger">7.38</span></p>
-            </div>
-          </div>
-          <div id="forecast" class="row mt-3"></div>
+        <div class="col-lg-9">
+          <div id="forecast-summary"></div>
+          <div class="row mt-3" id="forecast-full"></div>
         </div>
       </div>
     </div>
