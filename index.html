@@ -24,9 +24,9 @@
       <h1><strong>Weather Dashboard</strong></h1>
     </header>
     <!-- Start of weather dashboard search form area -->
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-med bg-light">
+        <div class="col-lg-3 bg-light">
           <h5>Search for a City/State:</h5>
           <div class="form-inline form-group">
             <input
@@ -40,38 +40,36 @@
             </button>
           </div>
           <sub>Up to 8 searched cities will display below.</sub>
-
           <!-- Start of Search History -->
           <div class="card" style="width: 16rem">
             <ul class="list-group list-group-flush" id="search-history"></ul>
           </div>
-          <!-- End of Search History -->
         </div>
+        <!-- End of Search History -->
 
         <!-- End of search form area -->
 
         <!-- Start of propagation container -->
-        <div class="container-md">
-          <div class="col-lg-2" id="today"></div>
-          <div class="card-text-left">
-            <div class="card-header">Your Forecast Here:</div>
-            <div class="card-body">
-              <h3 class="card-title">
-                Los Angeles (3/27/2021)<img
-                  src="http://openweathermap.org/img/w/01d.png"
-                />
-              </h3>
-              <p class="card-text">Temperature: 72.64 °F</p>
-              <p class="card-text">Humidity: 27 %</p>
-              <p class="card-text"></p>
-              <p>UV Index: <span class="btn btn-sm btn-danger">7.38</span></p>
+        <div class="col-lg-9" id="today">
+        <div class="row">
+            <div class="card">
+              <div class="card-header">Your Forecast Here:</div>
+              <div class="card-body">
+                <h3 class="card-title">
+                  Los Angeles (3/27/2021)<img
+                    src="http://openweathermap.org/img/w/01d.png"
+                  />
+                </h3>
+                <p class="card-text">Temperature: 72.64 °F</p>
+                <p class="card-text">Humidity: 27 %</p>
+                <p class="card-text"></p>
+                <p>UV Index: <span class="btn btn-sm btn-danger">7.38</span></p>
+              </div>
             </div>
+            <div id="forecast" class="row mt-3"></div>
           </div>
-
-          <div id="forecast" class="row mt-3"></div>
         </div>
       </div>
-    </div>
     <!-- End of propagation container -->
 
     <!-- Start of scripts -->
