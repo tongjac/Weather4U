@@ -30,18 +30,16 @@ function forecastGet(city) {
         let summaryEl = document.getElementById("forecast-summary");
         summaryEl.innerHTML = `<div class="card">
         <div class="card-header">Invalid location. Please try again.</div>`;
+        let forecastEl = document.getElementById("forecast-full");
+        forecastEl.innerHTML = "<p></p>";
       } else {
         // Do these functions if there is a valid response.
         // But first let's clear out the previous summary  in case.
         let summaryEl = document.getElementById("forecast-summary");
         summaryEl.innerHTML = "";
         let forecastEl = document.getElementById("forecast-full");
-        // forecastEl.innerHTML = "<p></p>";
-        while (forecastEl.length > 0) {
-          let last = forecastEl[forecastEl.length - 1];
-          last.parentNode.removeChild(last);
-        }
-        // Prints summary elements
+        forecastEl.innerHTML = "<p></p>";
+        // Prints summary elements.
         dailyWeather(data);
         // Push to search history list.
         searchHistory(data.city.name);
