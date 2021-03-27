@@ -110,7 +110,7 @@ function dailyWeather(data) {
   UVindex(data);
   summaryEl.appendChild(cardEl);
 
-  // Prints 5 weather forecast cards.
+  // Prints weather forecast cards.
   postWeather(data);
 }
 
@@ -119,11 +119,11 @@ function postWeather(weatherInput) {
   forecastRowEl = document.createElement("div");
   forecastRowEl.className = '"row"';
 
-  // loop over all forecasts (by 3-hour increments)
+  // Loop over all forecasts
   for (let i = 0; i < weatherInput.list.length; i++) {
-    // only look at forecasts around 3:00pm
+    // But only the ones at 3:00pm (5 total)
     if (weatherInput.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-      // create html elements for a bootstrap card
+      // Make bootstrap card
       var colEl = document.createElement("div");
       colEl.classList.add("col-md-2");
       let cardEl = document.createElement("div");
@@ -173,6 +173,7 @@ function postWeather(weatherInput) {
 }
 
 function UVindex(data) {
+  // Aaaa last function uv index api aaaaaa
   fetch(
     "https://api.openweathermap.org/data/2.5/onecall?lat=" +
       data.city.coord.lat +
