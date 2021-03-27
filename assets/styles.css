@@ -11,5 +11,6 @@ h5 {
 }
 
 .container {
+  padding: 5px;
   text-align: center;
 }
