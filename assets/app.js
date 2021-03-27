@@ -41,28 +41,23 @@ function forecastGet(city) {
 }
 
 function searchHistory(textInput) {
+  let historyList = document.getElementsByClassName("list-group-item");
+  if (historyList.length > 8) {
+    var last = historyList[historyList.length - 1];
+    last.parentNode.removeChild(last);
+  }
+  // Create a list item
   let line = document.createElement("li");
-  let text = textInput;
-  line.textContent = text;
+  line.textContent = textInput;
+  let setClass = document.createAttribute("class");
+  setClass.value = "list-group-item";
+  line.setAttributeNode(setClass);
   let historyEl = document.getElementById("search-history");
   historyEl.onclick = (event) => {
     event.preventDefault();
     if (event.target.tagName == "LI") {
-      searchWeather(event.target.textContent);
+      forecastGet(event.target.textContent);
     }
   };
-  historyEl.appendChild(line);
-  let setClass = document.createAttribute("class");
-  setClass.value = "list-group-item";
-  line.setAttributeNode(setClass);
-  let setVal = document.createAttribute("value");
-  setVal.value = textInput;
-  line.setAttributeNode(setVal);
-
-  // document
-  //   .getElementsByClassName("list-group-item")
-  //   .addEventListener("click", function (e) {
-  //     e.preventDefault();
-  //     forecastGet(target.value);
-  //   });
+  historyEl.prepend(line);
 }
